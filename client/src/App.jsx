@@ -1,11 +1,9 @@
-import Header from "./components/Header"
-import Card from "./components/Card"
+import Browse from "./pages/Browse"
 
 export default function App() {
     return (
         <>
-            <Header />
-            <Card />
+            <Browse />
         </>
     )
 }
