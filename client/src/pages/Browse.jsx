@@ -18,9 +18,9 @@ export default function Browse() {
     return (
         <>
             <Header />
-            <main className="py-10 px-44">
+            <main className="py-3 sm:py-10 px-4 md:px-16 lg:px-20 2xl:px-48">
                 <Categories category={category} setCategory={setCategory} />
-                <section className="grid grid-cols-3 gap-7">
+                <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
                     <Card />
                     <Card />
                     <Card />
