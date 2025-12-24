@@ -1,5 +1,6 @@
 import React from "react"
-
+import { Link } from "react-router-dom"
+ 
 export default function Header() {
 
     const [menuOpen, setMenuOpen] = React.useState(false)
@@ -50,11 +51,13 @@ export default function Header() {
             <nav className={`flex gap-3 items-stretch md:gap-4 md:static md:items-center fixed bg-white top-0 bottom-0 left-0 flex-col md:flex-row px-4 md:w-max w-70 md:px-0 md:py-0 py-16 transition z-40 duration-700 ease-in-out md:transition-none md:translate-x-0 
                 ${menuOpen ? "translate-x-0" : "-translate-x-full"}`
             }>
-                <a href="/" className="border-b-gray-700 border-b-2 md:border-0 text-center">Inbox</a>
-                <a href="/sell" className="bg-black text-white py-1 px-5 rounded-full flex justify-center">
+                <Link to="/inbox" className="border-b-gray-700 border-b-2 md:border-0 text-center">
+                    Inbox
+                </Link>
+                <Link to="/sell" className="bg-black text-white py-1 px-5 rounded-full flex justify-center">
                     Sell
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" className="w-5"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
-                </a>
+                </Link>
             </nav>
 
             <div

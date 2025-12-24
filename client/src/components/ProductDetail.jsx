@@ -5,7 +5,7 @@ const ProductDetail = ({ product }) => {
   const [activeImage, setActiveImage] = useState(product.images[0]);
 
   return (
-    <div className="max-w-6xl mx-auto bg-white md:rounded-xl md:border-3 pb-24 md:pb-6">
+    <section className="max-w-6xl mx-auto bg-white md:rounded-xl md:border-3 pb-24 md:pb-6">
       {/* Mobile Seller info */}
       <div className="md:hidden px-4 pt-4 flex items-center justify-between text-sm text-gray-500">
         <div className="flex items-center gap-2">
@@ -28,7 +28,7 @@ const ProductDetail = ({ product }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-6 mt-6">
         {/* Desktop Images */}
         <div className="hidden md:block">
-          <div className="w-full h-[350px] flex items-center justify-center rounded-lg border bg-gray-100">
+          <div className="w-full h-87.5 flex items-center justify-center rounded-lg border bg-gray-100">
             <img
               src={activeImage}
               alt="product"
@@ -109,7 +109,7 @@ const ProductDetail = ({ product }) => {
           Message Seller
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 

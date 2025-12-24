@@ -15,7 +15,7 @@ const MobileSwiperImages = ({ images }) => {
       >
         {images.map((img, idx) => (
           <SwiperSlide key={idx}>
-            <div className="w-screen h-[280px] flex items-center justify-center bg-gray-100">
+            <div className="w-screen h-70 flex items-center justify-center bg-gray-100">
               <img
                 src={img}
                 alt={`product-${idx}`}
