@@ -9,6 +9,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<Browse />} />
                 <Route path="/product" element={<Product />} />
+                <Route path="/sell" element={<formm />} />
             </Routes>
         </BrowserRouter>
     )
