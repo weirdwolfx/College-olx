@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Camera, Plus, X, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom"
 
 export default function App() {
   const [title, setTitle] = useState("");
