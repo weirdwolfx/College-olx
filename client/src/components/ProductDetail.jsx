@@ -4,7 +4,7 @@ import MobileSwiperImages from "./MobileSwiperImages";
 const ProductDetail = ({ product }) => {
     const [activeImage, setActiveImage] = useState(product.images[0]);
     return (
-        <section className="max-w-4xl bg-white rounded-lg md:rounded-xl drop-shadow-md md:py-4.5">
+        <section className="max-w-4xl bg-white rounded-lg md:rounded-xl drop-shadow-md md:py-7 md:px-2.5">
             {/* Mobile Seller info */}
             <div className="md:hidden px-4 pt-4 flex items-center justify-between text-sm text-gray-500">
                 <div className="flex items-center gap-2">

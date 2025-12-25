@@ -1,27 +1,13 @@
-import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export default function BackButton({ to = "/", label = "Back to Browse" }) {
-  const navigate = useNavigate()
 
-  return (
-    <div className="max-w-5xl mx-auto px-4 py-2">
-      <button
-        onClick={() => navigate(to)}
-        className="
-          group inline-flex items-center gap-2
-          px-3 py-1.5 rounded-full
-          border border-gray-300
-          text-xs font-medium text-gray-600
-          bg-white
-          hover:border-black hover:text-black
-          transition-all duration-150
-        "
-      >
-        <span className="transition-transform group-hover:-translate-x-1">
-          ←
-        </span>
-        {label}
-      </button>
-    </div>
-  )
+    return (
+        <Link to={to} className="flex items-center gap-2">
+            <div className="bg-white rounded-full p-0.5 drop-shadow-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" height="22px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z" /></svg>
+            </div>
+            <p className="text-lg font-semibold">{label}</p>
+        </Link>
+    )
 }
