@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Camera, Plus, X, ChevronDown } from "lucide-react";
 
-export default function Seller() {
+export default function SellForm() {
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("None")
     const [images, setImages] = useState([]);

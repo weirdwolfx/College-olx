@@ -1,17 +1,17 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import SellForm from "./pages/SellForm"
-import Browse from "./pages/Browse"
-import Product from "./pages/Product"
-import Chat from "./pages/Chat"
+import SellFormPage from "./pages/SellFormPage"
+import BrowsePage from "./pages/BrowsePage"
+import ProductPage from "./pages/ProductPage"
+import ChatPage from "./pages/ChatPage"
 
 export default function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Browse />} />
-                <Route path="/product" element={<Product />} />
-                <Route path="/sell" element={<SellForm />} />
-                <Route path="/message" element={<Chat />} />
+                <Route path="/" element={<BrowsePage />} />
+                <Route path="/product" element={<ProductPage />} />
+                <Route path="/sell" element={<SellFormPage />} />
+                <Route path="/message" element={<ChatPage />} />
             </Routes>
         </BrowserRouter>
     )

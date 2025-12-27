@@ -1,9 +1,9 @@
-import ProductDetail from "../components/ProductDetail"
+import ProductDetail from "../components/Product/ProductDetail"
 import Header from "../components/Header"
 import BackButton from "../components/BackButton"
 import sampleProduct from "../assets/data"
 
-export default function Product() {
+export default function ProductPage() {
     return (
         <>
             <Header />
