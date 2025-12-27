@@ -5,8 +5,8 @@ export default function ChatPage() {
     return (
         <>
             <Header />
-            <main>
-                <ChatRoom />
+            <main className="flex justify-center">
+                <ChatRoom user="bob" />
             </main>
         </>
     )
