@@ -1,23 +1,18 @@
+import React from "react"
+
 import ChatHeader from "./ChatHeader"
-import MessageBubble from "./MessageBubble"
 import MessageInput from "./MessageInput"
+import MessageWindow from "./MessageWindow"
 
-import messages from "../../assets/chat"
+export default function ChatRoom({ user, msgs }) {
 
-export default function ChatRoom({ user }) {
-
-    const messageElements = messages[user].map((msg) => {
-        return (
-            <MessageBubble 
-                text={msg.text}
-                sentByMe={msg.sentByMe}
-            />
-        )
-    })
+    const [messages, setMessages] = React.useState(msgs)
 
     return (
-        <section className="w-2xl flex flex-col gap-1">
-            {messageElements}
-        </section>
+        <main className="flex flex-col gap-3">
+            <ChatHeader user={user} />
+            <MessageWindow messages={messages} />
+            <MessageInput setMessages={setMessages} />
+        </main>
     )
 }

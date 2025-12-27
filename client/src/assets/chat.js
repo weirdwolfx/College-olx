@@ -1,15 +1,15 @@
-const messages = {
+const msgs = {
     "alice": [
-        { text: "Hi", sentByMe:false },
-        { text: "How are you", sentByMe:false },
-        { text: "Yeah i am good, Wbu?", sentByMe:true },
-        { text: "Wanna meet sometime", sentByMe:false },
+        { id:crypto.randomUUID() ,text: "Hi", sentByMe:false },
+        { id:crypto.randomUUID() ,text: "How are you", sentByMe:false },
+        { id:crypto.randomUUID() ,text: "Yeah i am good, Wbu?", sentByMe:true },
+        { id:crypto.randomUUID() ,text: "Wanna meet sometime", sentByMe:false },
     ],
     "bob": [
-        { text: "Hey bro, wanna play Minecraft sometime?", sentByMe:false },
-        { text: "Yeah sure", sentByMe:true },
-        { text: "Cool", sentByMe:false },
+        { id:crypto.randomUUID() ,text: "Hey bro, wanna play Minecraft sometime?", sentByMe:false },
+        { id:crypto.randomUUID() ,text: "Yeah sure", sentByMe:true },
+        { id:crypto.randomUUID() ,text: "Cool", sentByMe:false },
     ]
 }
 
-export default messages
+export default msgs
