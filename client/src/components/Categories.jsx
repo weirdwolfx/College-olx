@@ -5,6 +5,7 @@ export default function Categories({ category, setCategory }) {
     const categoryElements = categories.map((name) => {
         return (
             <button
+                key={name}
                 onClick={() => setCategory(name.toLowerCase())}
                 className={`border-2 rounded-lg px-3 py-0.5 cursor-pointer
                 ${(category === name.toLowerCase()) ? "selected" : "not-selected"}`

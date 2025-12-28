@@ -1,13 +1,12 @@
 export default function MessageBubble({ msg }) {
     return (
         <div
-            key={msg.id}
-            className={`relative w-max max-w-1/2
+            className={`relative w-max max-w-2/3
             ${msg.sentByMe ? "self-end" : "self-start"}
         `}>
             <div className={`px-4 py-2 rounded-lg
             ${msg.sentByMe ? "bg-blue-500" : "bg-blue-100"} `}>
-                <p className={`${msg.sentByMe ? "text-white" : "text-black"}`}>
+                <p className={`wrap-break-word ${msg.sentByMe ? "text-white" : "text-black"}`}>
                     {msg.text}
                 </p>
             </div>

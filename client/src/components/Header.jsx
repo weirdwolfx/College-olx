@@ -23,7 +23,7 @@ export default function Header() {
     }, [menuOpen])
 
     return (
-        <header className="grid grid-cols-3 sm:flex sm:justify-between py-5 px-6 shadow-sm relative items-center min-h-20">
+        <header className="grid grid-cols-3 sm:flex sm:justify-between py-5 px-6 shadow-sm relative items-center h-20 bg-white">
             <h1 className="hidden md:block">Logo</h1> 
 
             <button 
