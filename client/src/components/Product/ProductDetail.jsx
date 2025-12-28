@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom"
+
 import MobileSwiperImages from "./MobileSwiperImages";
 
 const ProductDetail = ({ product }) => {
@@ -95,18 +97,18 @@ const ProductDetail = ({ product }) => {
 
                     {/* Desktop button */}
                     <div className="hidden md:block mt-2.5">
-                        <button className="w-full bg-black text-white py-2 rounded-lg cursor-pointer">
+                        <Link to="/message" className="block w-full text-center bg-black text-white py-2 rounded-lg cursor-pointer">
                             Message Seller
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>
 
             {/* Mobile button (fixed) */}
             <div className="md:hidden sticky bottom-1 p-2 mt-3">
-                <button className="w-full bg-black text-white py-3 rounded-lg">
+                <Link to="/message" className="block w-full text-center bg-black text-white py-3 rounded-lg">
                     Message Seller
-                </button>
+                </Link>
             </div>
         </section>
     );

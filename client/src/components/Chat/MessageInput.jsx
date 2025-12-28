@@ -1,4 +1,4 @@
-export default function MessageInput({ setMessages, customClass="" }) {
+export default function MessageInput({ user, setMessages, customClass="" }) {
 
     function sendMessage(formData) {
         const text = formData.get("message")
@@ -8,8 +8,14 @@ export default function MessageInput({ setMessages, customClass="" }) {
             id: crypto.randomUUID(),
             text,
             sentByMe: true,
-        }
-        setMessages((prevMessages) => [...prevMessages, msgObj])
+        } 
+
+        setMessages((prevMessages) => {
+            return {
+                ...prevMessages,
+                [user]: [...prevMessages[user], msgObj]
+            }
+        })
     }
 
     return (

@@ -1,7 +1,21 @@
-export default function Sidebar({ customClass="" }) {
+import ChatList from "./ChatList"
+
+export default function Sidebar({ currentUser, users, setUser, customClass="" }) {
+
+    const userElements = users.map((user, id) => {
+        return (
+            <ChatList 
+                key={id}
+                user={user}
+                currentUser={currentUser}
+                setUser={setUser} 
+            />
+        )
+    })
+
     return (
-        <aside className={`p-4 ${customClass}`}>
-            <p>This is chat sidebar</p>
+        <aside className={`pt-8 ${customClass}`}>
+            {userElements}
         </aside>
     )
 }
