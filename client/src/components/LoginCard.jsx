@@ -27,7 +27,7 @@ export default function LoginCard() {
       <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-sm text-center">
         <h1 className="text-3xl font-bold mb-1">CampX</h1>
         <p className="text-gray-500 mb-4">
-          Buy • Sell • Exchange inside VNIT
+         Buy, sell inside VNIT
         </p>
 
         <p className="text-gray-600 text-sm mb-6">
@@ -76,3 +76,4 @@ export default function LoginCard() {
     </>
   );
 }
+
