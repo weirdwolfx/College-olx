@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 export default function Card() {
     return (
-        <section className="shadow-sm rounded-xl py-4 px-3.5 border-2 flex flex-col gap-2.5">
+        <section className="shadow-sm rounded-xl py-4 px-3.5 drop-shadow-md flex flex-col gap-2.5 bg-white">
             <div className="flex justify-between items-center mb-1.5">
                 <div className="flex gap-1.5 items-center">
                     <div className="rounded-full w-6 h-6 overflow-hidden bg-orange-400">

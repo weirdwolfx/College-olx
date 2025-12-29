@@ -4,9 +4,10 @@ import { Link } from "react-router-dom"
 export default function Header() {
 
     const [menuOpen, setMenuOpen] = React.useState(false)
+    const mdScreenWidth = 768;
 
     React.useEffect(() => {
-        if (window.innerWidth >= 768) {
+        if (window.innerWidth >= mdScreenWidth) {
             setMenuOpen(false);
         }
     }, [window.innerWidth]);
@@ -27,7 +28,7 @@ export default function Header() {
 
             <button 
                 onClick={() => setMenuOpen(menuOpen => !menuOpen)}
-                className={`justify-self-start relative md:hidden transform transition duration-300 z-50 origin-center
+                className={`justify-self-start relative md:hidden transform transition duration-300 z-60 origin-center
                     ${menuOpen ? "rotate-180" : "rotate-0"}`}
             >
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
@@ -48,13 +49,15 @@ export default function Header() {
                 </label>
             </div>
 
-            <nav className={`flex gap-3 items-stretch md:gap-4 md:static md:items-center fixed bg-white top-0 bottom-0 left-0 flex-col md:flex-row px-4 md:w-max w-70 md:px-0 md:py-0 py-16 transition z-40 duration-700 ease-in-out md:transition-none md:translate-x-0 
+            <nav className={`flex gap-3 items-stretch md:gap-4 md:static md:items-center fixed bg-white top-0 bottom-0 left-0 flex-col md:flex-row px-4 md:w-max w-70 md:px-0 md:py-0 py-16 transition z-50 duration-700 ease-in-out md:transition-none md:translate-x-0 
                 ${menuOpen ? "translate-x-0" : "-translate-x-full"}`
             }>
-                <Link to="/inbox" className="border-b-gray-700 border-b-2 md:border-0 text-center">
+                <Link to="/inbox" aria-disabled={!menuOpen && window.innerWidth < mdScreenWidth} tabIndex={(menuOpen || window.innerWidth >= mdScreenWidth) ? 0 : -1} className={`border-b-gray-700 border-b-2 md:border-0 text-center
+                    ${(menuOpen || window.innerWidth >= mdScreenWidth) ? "" : "pointer-events-none"} `}>
                     Inbox
                 </Link>
-                <Link to="/sell" className="bg-black text-white py-1 px-5 rounded-full flex justify-center">
+                <Link to="/sell" aria-disabled={!menuOpen && window.innerWidth < mdScreenWidth} tabIndex={(menuOpen || window.innerWidth >= mdScreenWidth) ? 0 : -1} className={`bg-black text-white py-1 px-5 rounded-full flex justify-center
+                    ${(menuOpen || window.innerWidth >= mdScreenWidth) ? "" : "pointer-events-none"}`}>
                     Sell
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF" className="w-5"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
                 </Link>
@@ -65,7 +68,7 @@ export default function Header() {
 
             <div
                 onClick={() => setMenuOpen(false)} 
-                className={`fixed inset-0 bg-black transition duration-500 md:opacity-0 md:pointer-events-none
+                className={`fixed z-30 inset-0 bg-black transition duration-500 md:opacity-0 md:pointer-events-none
                 ${menuOpen ? "opacity-40" : "opacity-0 pointer-events-none"}`}>
             </div>
         </header>
