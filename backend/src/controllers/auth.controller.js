@@ -19,16 +19,25 @@ export const googleAuth = async (req, res) => {
     });
 
     const payload = ticket.getPayload();
-    const { email, name } = payload;
+    const { email, name , picture } = payload;
 
-    
+    if(!email.endsWith("@students.vnit.ac.in")){
+      console.log("Unauthorized email domain:", email);
+      // later we can store this email address ... 
+     return res.status(403).json({ message: "ye banda VNIT ka nahi hai" });
+    }
+
+
     // Later enforce strictly
     console.log("Logged in email:", email);
 
   
     let user = await User.findOne({ email });
     if (!user) {
-      user = await User.create({ name, email });
+     const enrollment = email.split("@")[0];       // bt24cse093
+    const year = enrollment.slice(2, 4);          // 24
+    const branch = enrollment.slice(4, 7).toUpperCase(); // CSE
+      user = await User.create({ name, email , picture , enrollment, year , branch});
     }
 
     
@@ -39,13 +48,18 @@ export const googleAuth = async (req, res) => {
     );
 
    
-    res.json({
+    res.status(200).json({
       token,
       user: {
-        id: user._id,
+        id: user._id,  
         name: user.name,
         email: user.email,
-        role: user.role
+        role: user.role,
+        branch: user.branch,
+        year: user.year,
+        picture: user.picture,
+        enrollment: user.enrollment,
+        year: user.year,
       }
     });
 
