@@ -2,29 +2,57 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
-    role: { type: String, default: "user" },
-    branch: {
+    googleId: {
       type: String,
-      trim: true,
-      default: ""   
-    },
-    year: {
-      type: Number, 
-      default: null
+      required: true,
     },
 
-    picture : {
+    name: {
       type: String,
-      default: ""
+      required: true,
+      trim: true,
     },
-    enrollment :{
-       type: String,
-      default: ""
-    }
+
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+    },
+
+    picture: {
+      type: String, // Google profile image URL
+    },
+
+    enrollment: {
+      type: String, // bt24cse093
+      required: true,
+    },
+
+    year: {
+      type: String, // 24
+      required: true,
+    },
+
+    branch: {
+      type: String, // CSE
+      required: true,
+    },
+
+    role: {
+      type: String,
+      default: "user",
+    },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    autoIndex: false, 
+  }
 );
 
-export default mongoose.model("User", userSchema);
+userSchema.index({ email: 1 }, { unique: true });
+
+const User = mongoose.model("User", userSchema);
+User.syncIndexes();
+
+export default User;
