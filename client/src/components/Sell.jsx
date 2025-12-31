@@ -70,6 +70,8 @@ const handleSubmit = async (formData) => {
         data.append("images", imgObj.file);
     });
 
+    setImages([]);
+
     try {
         const response = await API.post("/api/listings/createListing", data, {
             headers: { "Content-Type": "multipart/form-data" },

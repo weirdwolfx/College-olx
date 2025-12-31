@@ -6,6 +6,7 @@ export default function Categories({ category, setCategory }) {
     
     const categoryElements = categories.map((name) => {
         return <Category 
+            key={name}
             category={category} 
             setCategory={setCategory} 
             name={name} 
