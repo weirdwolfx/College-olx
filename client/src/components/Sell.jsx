@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Camera, Plus, X, ChevronDown } from "lucide-react";
-
+import API from "../api/index"; // Import your axios instance
 export default function Seller() {
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("None")
@@ -40,22 +40,47 @@ export default function Seller() {
         }
     };
 
-    /* ---------- SUBMIT ---------- */
-    function handleSubmit(formData) {
-        const name = formData.get("name")
-        const price = formData.get("price")
+  /* ---------- SUBMIT ---------- */
+const handleSubmit = async (formData) => {
+    const title = formData.get("name");
+    const price = formData.get("price");
+    const description = formData.get("description");
 
-        const newErrors = {};
+    // Validation
+    const newErrors = {};
+    if (!title.trim()) newErrors.title = "Product title is required";
+    if (!price) newErrors.price = "Enter a valid price";
+    if (images.length === 0) newErrors.images = "At least 1 image is required";
+    if (category === "None") newErrors.category = "Please select a category";
 
-        if (!name.trim()) newErrors.title = "Product title is required";
-        if (!price) newErrors.price = "Enter a valid price";
-        if (images.length === 0) newErrors.images = "At least 1 image is required";
-
-        if (Object.keys(newErrors).length !== 0) {
-            setErrors(newErrors);
-            return;
-        }
+    if (Object.keys(newErrors).length !== 0) {
+        setErrors(newErrors);
+        return;
     }
+
+    // Create Multipart FormData
+    const data = new FormData();
+    data.append("title", title);
+    data.append("price", price);
+    data.append("description", description);
+    data.append("category", category);
+
+    // Append actual file objects from state
+    images.forEach((imgObj) => {
+        data.append("images", imgObj.file);
+    });
+
+    try {
+        const response = await API.post("/api/listings/createListing", data, {
+            headers: { "Content-Type": "multipart/form-data" },
+        });
+        alert("Product posted successfully!");
+        // Optional: Redirect to browse or clear form
+    } catch (err) {
+        console.error("Upload error:", err);
+        alert(err.response?.data?.message || "Failed to post product");
+    }
+};
 
     return (
         <form

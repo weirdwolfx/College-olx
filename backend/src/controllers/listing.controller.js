@@ -5,10 +5,11 @@ export const createListing = async (req, res) => {
   try {
     const { title, description, price, category } = req.body;
 
-    if (!title || !description || !price || !category) {
-      return res.status(400).json({
-        message: "All fields are required"
-      });
+    // Get URLs of uploaded files from Cloudinary
+    const images = req.files ? req.files.map(file => file.path) : [];
+
+    if (!title || !description || !price || !category || images.length === 0) {
+      return res.status(400).json({ message: "All fields including images are required" });
     }
 
     const listing = await Listing.create({
@@ -16,6 +17,7 @@ export const createListing = async (req, res) => {
       description,
       price,
       category,
+      images, // Store the array of Cloudinary URLs
       seller: req.userId  
     });
 

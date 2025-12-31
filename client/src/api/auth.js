@@ -1,10 +1,7 @@
-import axios from "axios";
 
-const API_URL = `${import.meta.env.VITE_API_BASE_URL}/api/auth`;
+import API from "./index"; // Use the protected instance
 
 export const googleLogin = async (idToken) => {
-  const res = await axios.post(`${API_URL}/google`, {
-    idToken,
-  });
+  const res = await API.post("/api/auth/google", { idToken });
   return res.data;
 };
