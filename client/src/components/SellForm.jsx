@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Camera, Plus, X, ChevronDown } from "lucide-react";
 
-export default function Seller() {
+export default function SellForm() {
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("None")
     const [images, setImages] = useState([]);
@@ -84,7 +84,7 @@ export default function Seller() {
                                 ${errors.title ? "border-red-500" : "focus:border-black"}`}
                         />
                         <label htmlFor="name"
-                            className="absolute left-0 -top-5 transition-all cursor-text duration-200 text-sm peer-focus:-top-5 peer-focus:text-sm peer-placeholder-shown:top-0 peer-placeholder-shown:text-xl text-neutral-500"
+                            className="absolute left-0 -top-5 transition-all cursor-text duration-200 text-sm peer-focus:-top-5 peer-focus:text-sm peer-placeholder-shown:top-0 peer-placeholder-shown:text-lg text-neutral-500"
                         >
                             Product Name(*)
                         </label>
@@ -110,7 +110,7 @@ export default function Seller() {
                                 }}
                             />
                             <label htmlFor="price" aria-required
-                                className="absolute left-0 -top-5 transition-all cursor-text duration-200 text-sm peer-focus:-top-5 peer-focus:left-0 peer-focus:text-sm peer-placeholder-shown:top-0.5 peer-placeholder-shown:text-xl peer-placeholder-shown:left-6 text-neutral-500"
+                                className="absolute left-0 -top-5 transition-all cursor-text duration-200 text-sm peer-focus:-top-5 peer-focus:left-0 peer-focus:text-sm peer-placeholder-shown:top-0.5 peer-placeholder-shown:text-lg peer-placeholder-shown:left-4.5 text-neutral-500"
                             >
                                 Product Price(*)
                             </label>
@@ -208,7 +208,7 @@ export default function Seller() {
 
                     <div className="self-center flex gap-3 flex-wrap">
                         {images.slice(1).map((img, idx) => (
-                            <div key={idx} className="relative w-18 h-18 xl:w-20 xl:h-20 border rounded-lg overflow-hidden">
+                            <div key={idx} className="relative w-18 h-18 border rounded-lg overflow-hidden">
                                 <img src={img.preview} className="w-full h-full object-cover" />
                                 <button
                                     onClick={() => removeImage(idx + 1)}
@@ -222,7 +222,7 @@ export default function Seller() {
                         {images.length < MAX_IMAGES && (
                             <>
                                 <input name="image" type="file" id="add-img" accept="image/*" onChange={handleImageUpload} className="peer sr-only" multiple />
-                                <label htmlFor="add-img" className="w-18 h-18 xl:w-20 xl:h-20 border-2 border-dashed peer-focus-visible:border-amber-600 rounded-lg flex items-center justify-center cursor-pointer">
+                                <label htmlFor="add-img" className="w-18 h-18 border-2 border-dashed peer-focus-visible:border-amber-600 rounded-lg flex items-center justify-center cursor-pointer">
                                     <Plus size={24} />
                                 </label>
                             </>

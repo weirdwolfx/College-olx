@@ -1,10 +1,10 @@
 import React from "react"
 
 import Header from "../components/Header"
-import Card from "../components/Card"
+import Card from "../components/Product/Card"
 import Categories from "../components/Categories"
 
-export default function Browse() {
+export default function BrowsePage() {
 
     const [products, setProducts] = React.useState(null)
     const [category, setCategory] = React.useState("all")
