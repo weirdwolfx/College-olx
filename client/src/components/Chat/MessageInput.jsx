@@ -1,4 +1,4 @@
-export default function MessageInput({ user, setMessages, customClass="" }) {
+export default function MessageInput({ customClass="" }) {
 
     function sendMessage(formData) {
         const text = formData.get("message")
@@ -10,12 +10,7 @@ export default function MessageInput({ user, setMessages, customClass="" }) {
             sentByMe: true,
         } 
 
-        setMessages((prevMessages) => {
-            return {
-                ...prevMessages,
-                [user]: [...prevMessages[user], msgObj]
-            }
-        })
+        console.log(msgObj)
     }
 
     return (

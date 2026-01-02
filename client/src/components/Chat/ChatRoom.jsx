@@ -1,32 +1,22 @@
-import React from "react"
+import { useParams } from "react-router-dom"
 
 import ChatHeader from "./ChatHeader"
 import MessageInput from "./MessageInput"
 import MessageWindow from "./MessageWindow"
-import Sidebar from "./ChatSidebar"
 
 import msgs from "../../assets/chat"
 
-export default function ChatRoom({ customClass = "" }) {
+export default function ChatRoom() {
 
-    const [user, setUser] = React.useState(null)
-    const [messages, setMessages] = React.useState(msgs)
-
-    const users = Object.keys(msgs)
+    const { id } = useParams()
 
     return (
-        <div className="h-full grid-cols-4 grid rounded-xl bg-white overflow-hidden drop-shadow-lg">
-            <Sidebar currentUser={user} users={users} setUser={setUser} customClass="border-r-2 col-span-1" />
-
-            <section className="grid grid-rows-9 min-h-0 col-span-3">
-                {user &&
-                    <>
-                        <ChatHeader user={user} customClass="row-span-1" />
-                        <MessageWindow messages={messages[user]} customClass="row-start-2 -row-end-2" />
-                        <MessageInput user={user} setMessages={setMessages} customClass="row-span-1" />
-                    </>
-                }
-            </section>
-        </div>
+        <>
+            <main className="grid grid-rows-9 h-full min-h-0 md:col-span-3">
+                <ChatHeader user="Alice" customClass="row-span-1" />
+                <MessageWindow messages={msgs[id]} customClass="row-start-2 -row-end-2" />
+                <MessageInput customClass="row-span-1" />
+            </main>
+        </>
     )
 }
