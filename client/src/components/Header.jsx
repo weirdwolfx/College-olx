@@ -7,11 +7,13 @@ export default function Header() {
   const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [showLogoutPopup, setShowLogoutPopup] = React.useState(false);
+
   React.useEffect(() => {
     if (window.innerWidth >= 768) {
       setMenuOpen(false);
     }
   }, [window.innerWidth]);
+
   React.useEffect(() => {
     if (menuOpen) {
       document.body.classList.add("overflow-hidden");
@@ -20,6 +22,7 @@ export default function Header() {
     }
     return () => document.body.classList.remove("overflow-hidden");
   }, [menuOpen]);
+  
   return (
     <header className="grid grid-cols-3 sm:flex sm:justify-between py-5 px-6 shadow-sm relative items-center min-h-20">
       <h1 className="hidden md:block">Logo</h1>
