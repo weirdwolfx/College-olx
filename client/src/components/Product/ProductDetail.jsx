@@ -1,10 +1,5 @@
-<<<<<<< HEAD:client/src/components/Product/ProductDetail.jsx
-import { useState } from "react";
 import { Link } from "react-router-dom"
-
-=======
 import { useState, useEffect } from "react";
->>>>>>> 1c6700bdec187a5339e83dd22d37ee36ac1f9ed1:client/src/components/ProductDetail.jsx
 import MobileSwiperImages from "./MobileSwiperImages";
 
 const ProductDetail = ({ product }) => {
@@ -112,13 +107,8 @@ const ProductDetail = ({ product }) => {
                     </div>
 
                     {/* Desktop button */}
-<<<<<<< HEAD:client/src/components/Product/ProductDetail.jsx
                     <div className="hidden md:block mt-2.5">
                         <Link to="/message" className="block w-full text-center bg-black text-white py-2 rounded-lg cursor-pointer">
-=======
-                    <div className="hidden md:block mt-4">
-                        <button className="w-full bg-black text-white py-2 rounded-lg cursor-pointer hover:bg-neutral-800 transition-colors">
->>>>>>> 1c6700bdec187a5339e83dd22d37ee36ac1f9ed1:client/src/components/ProductDetail.jsx
                             Message Seller
                         </Link>
                     </div>
@@ -127,11 +117,7 @@ const ProductDetail = ({ product }) => {
 
             {/* Mobile button (fixed) */}
             <div className="md:hidden sticky bottom-1 p-2 mt-3">
-<<<<<<< HEAD:client/src/components/Product/ProductDetail.jsx
                 <Link to="/message" className="block w-full text-center bg-black text-white py-3 rounded-lg">
-=======
-                <button className="w-full bg-black text-white py-3 rounded-lg shadow-lg">
->>>>>>> 1c6700bdec187a5339e83dd22d37ee36ac1f9ed1:client/src/components/ProductDetail.jsx
                     Message Seller
                 </Link>
             </div>
