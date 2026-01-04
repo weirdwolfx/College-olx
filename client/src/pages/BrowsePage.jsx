@@ -3,26 +3,12 @@ import Header from "../components/Header"
 import Card from "../components/Product/Card"
 import Categories from "../components/Categories"
 import API from "../api/index"
+import sampleProduct from "../assets/data"
 
 export default function Browse() {
-    const [products, setProducts] = React.useState([])
+    const [products, setProducts] = React.useState(sampleProduct)
     const [category, setCategory] = React.useState("all")
-    const [loading, setLoading] = React.useState(true)
-
-    // 1. Fetch products only once when the component mounts
-    React.useEffect(() => {
-        const fetchProducts = async () => {
-            try {
-                const res = await API.get("/api/listings")
-                setProducts(res.data)
-            } catch (err) {
-                console.error("Failed to fetch products:", err)
-            } finally {
-                setLoading(false)
-            }
-        }
-        fetchProducts()
-    }, [])
+    const [loading, setLoading] = React.useState(false)
 
     const filteredProducts = products.filter((product) => {
         // 1. Agar "All" selected hai toh saare dikhao

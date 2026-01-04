@@ -1,12 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import LogoutConfirm from "./LogoutConfirm";
 
 export default function Header() {
-  const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = React.useState(false);
-  const [showLogoutPopup, setShowLogoutPopup] = React.useState(false);
 
   React.useEffect(() => {
     if (window.innerWidth >= 768) {
@@ -65,31 +62,7 @@ export default function Header() {
             <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
           </svg>
         </Link>
-
-
-        {user && (
-          <button
-            onClick={() => setShowLogoutPopup(true)}
-            className="border-b-gray-700 border-b-2 md:border-0 text-center text-red-600 font-semibold cursor-pointer"
-          >
-            Logout
-          </button>
-        )}
       </nav>
-
-      <div
-        onClick={() => setMenuOpen(false)}
-        className={`fixed inset-0 bg-black transition duration-500 md:opacity-0 md:pointer-events-none
-                ${menuOpen ? "opacity-40" : "opacity-0 pointer-events-none"}`}
-      />
-      <LogoutConfirm
-        open={showLogoutPopup}
-        onCancel={() => setShowLogoutPopup(false)}
-        onConfirm={() => {
-          logout();
-          setShowLogoutPopup(false);
-        }}
-      />
     </header>
   );
 }

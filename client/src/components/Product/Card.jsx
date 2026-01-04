@@ -40,13 +40,13 @@ export default function Card({ product }) {
             <div className="flex gap-2.5 mt-auto">
                 <Link
                     to={`/product/${product._id}`}
-                    className="w-full text-sm font-semibold border-2 bg-white py-2 px-1.5 rounded-lg text-center hover:bg-gray-50 transition-colors"
+                    className="w-full text-sm font-semibold border-2 bg-white py-1 px-1.5 rounded-lg text-center hover:bg-gray-50 transition-colors"
                 >
                     View Product
                 </Link>
                 <Link
                     to={`/message/${product.seller?._id}`}
-                    className="w-full text-sm font-semibold border-2 bg-white py-2 px-1.5 rounded-lg text-center hover:bg-gray-50 transition-colors"
+                    className="w-full text-sm font-semibold border-2 bg-white py-1 px-1.5 rounded-lg text-center hover:bg-gray-50 transition-colors"
                 >
                     Message Seller
                 </Link>

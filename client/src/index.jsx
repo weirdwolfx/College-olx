@@ -3,11 +3,8 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import { AuthProvider } from "./context/AuthContext";
 import AuthWrapper from "./components/AuthWrapper";
+import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
- <GoogleOAuthProvider clientId={import.meta.env.GOOGLE_CLIENT_ID} >
-    <AuthProvider>
-      <AuthWrapper />
-    </AuthProvider>
-  </GoogleOAuthProvider>
+    <App />
 );
