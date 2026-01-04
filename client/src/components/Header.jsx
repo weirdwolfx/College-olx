@@ -55,7 +55,7 @@ export default function Header() {
       <nav className={`flex gap-3 items-stretch md:gap-4 md:static md:items-center fixed bg-white top-0 bottom-0 left-0 flex-col md:flex-row px-4 md:w-max w-70 md:px-0 md:py-0 py-16 transition z-40 duration-700 ease-in-out md:transition-none md:translate-x-0 
                 ${menuOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
-        <Link to="/inbox" className="border-b-gray-700 border-b-2 md:border-0 text-center">
+        <Link to="/message" className="border-b-gray-700 border-b-2 md:border-0 text-center">
           Inbox
         </Link>
 

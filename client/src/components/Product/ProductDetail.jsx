@@ -17,7 +17,7 @@ const ProductDetail = ({ product }) => {
     if (!product) return <div className="p-10 text-center">Loading product details...</div>;
 
     // Helper to format date from MongoDB createdAt
-    const formattedDate = product.createdAt 
+    const formattedDate = product.createdAt
         ? new Date(product.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })
         : "N/A";
 

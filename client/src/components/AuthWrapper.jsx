@@ -3,15 +3,15 @@ import Login from "../pages/Login.jsx";
 import App from "../App.jsx";
 
 export default function AuthWrapper() {
-  const { token, loading } = useAuth();
+    const { token, loading } = useAuth();
 
-  if (loading) {
-    return <h2>Checking authentication..</h2>;
-  }
+    if (loading) {
+        return <h2>Checking authentication..</h2>;
+    }
 
-  if (!token) {
-    return <Login />;
-  }
+    if (!token) {
+        return <Login />;
+    }
 
-  return <App />;
+    return <App />;
 }

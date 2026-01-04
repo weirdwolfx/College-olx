@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import ProductDetail from "../components/ProductDetail"
+import ProductDetail from "../components/Product/ProductDetail"
 import Header from "../components/Header"
 import BackButton from "../components/BackButton"
 import API from "../api/index" // Import your axios instance
