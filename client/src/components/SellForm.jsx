@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Camera, Plus, X, ChevronDown } from "lucide-react";
+import API from "../api/index"; // Import your axios instance
 
 export default function SellForm() {
     const [description, setDescription] = useState("");
@@ -41,21 +42,48 @@ export default function SellForm() {
     };
 
     /* ---------- SUBMIT ---------- */
-    function handleSubmit(formData) {
-        const name = formData.get("name")
-        const price = formData.get("price")
+    const handleSubmit = async (formData) => {
+        const title = formData.get("name");
+        const price = formData.get("price");
+        const description = formData.get("description");
 
+        // Validation
         const newErrors = {};
-
-        if (!name.trim()) newErrors.title = "Product title is required";
+        if (!title.trim()) newErrors.title = "Product title is required";
         if (!price) newErrors.price = "Enter a valid price";
         if (images.length === 0) newErrors.images = "At least 1 image is required";
+        if (category === "None") newErrors.category = "Please select a category";
 
         if (Object.keys(newErrors).length !== 0) {
             setErrors(newErrors);
             return;
         }
-    }
+
+        // Create Multipart FormData
+        const data = new FormData();
+        data.append("title", title);
+        data.append("price", price);
+        data.append("description", description);
+        data.append("category", category);
+
+        // Append actual file objects from state
+        images.forEach((imgObj) => {
+            data.append("images", imgObj.file);
+        });
+
+        setImages([]);
+
+        try {
+            const response = await API.post("/api/listings/createListing", data, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
+            alert("Product posted successfully!");
+            // Optional: Redirect to browse or clear form
+        } catch (err) {
+            console.error("Upload error:", err);
+            alert(err.response?.data?.message || "Failed to post product");
+        }
+    };
 
     return (
         <form
