@@ -1,14 +1,25 @@
+import { useRef } from "react"
+import { useParams } from "react-router-dom"
+import socket from "../../socket"
+
 export default function MessageInput({ customClass="" }) {
+
+    const inputRef = useRef(null)
+    const { id } = useParams()
 
     function sendMessage(formData) {
         const text = formData.get("message")
         if (!text.trim()) return
 
         const msgObj = {
-            id: crypto.randomUUID(),
+            _id: crypto.randomUUID(),
+            id,
             text,
-            sentByMe: true,
+            sender: "Alice",
         } 
+
+        socket.emit('sendMessage', msgObj)
+        inputRef.current?.focus()
 
         console.log(msgObj)
     }
@@ -17,6 +28,7 @@ export default function MessageInput({ customClass="" }) {
         <section className={`px-2 py-2.5 border-t-2 ${customClass}`}>
             <form className="flex gap-4 items-center" action={sendMessage}>
                 <textarea
+                    ref={inputRef}
                     name="message"
                     type="text"
                     placeholder="Message"

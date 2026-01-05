@@ -1,14 +1,14 @@
 const msgs = {
     "1234": [
-        { id:crypto.randomUUID() ,text: "Hi", sentByMe:false },
-        { id:crypto.randomUUID() ,text: "How are you", sentByMe:false },
-        { id:crypto.randomUUID() ,text: "Yeah i am good, Wbu?", sentByMe:true },
-        { id:crypto.randomUUID() ,text: "Wanna meet sometime", sentByMe:false },
+        { _id:crypto.randomUUID() ,text: "Hi", sender:"Alice" },
+        { _id:crypto.randomUUID() ,text: "How are you", sender:"Alice" },
+        { _id:crypto.randomUUID() ,text: "Yeah i am good, Wbu?", sender:"Bob" },
+        { _id:crypto.randomUUID() ,text: "Wanna meet sometime", sender:"Alice" },
     ],
     "1235": [
-        { id:crypto.randomUUID() ,text: "Hey bro, wanna play Minecraft sometime?", sentByMe:false },
-        { id:crypto.randomUUID() ,text: "Yeah sure", sentByMe:true },
-        { id:crypto.randomUUID() ,text: "Cool", sentByMe:false },
+        { _id:crypto.randomUUID() ,text: "Hey bro, wanna play Minecraft sometime?", sender:"John" },
+        { _id:crypto.randomUUID() ,text: "Yeah sure", sender:"Bob" },
+        { _id:crypto.randomUUID() ,text: "Cool", sender:"John" },
     ]
 }
 
