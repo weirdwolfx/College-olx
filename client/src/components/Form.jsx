@@ -1,22 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Camera, Plus, X, ChevronDown } from "lucide-react";
 import DialogBox from "../components/DialogBox";
 
-export default function Form({ mode = "create", initialValue = {} }) {
-  const [description, setDescription] = useState(
-    initialValue.description || ""
-  );
-  const [category, setCategory] = useState(initialValue.category || "None");
-  const [images, setImages] = useState(initialValue.images || []);
+export default function Form({ mode = "create", initialValue = {}, onSubmit }) {
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("None");
+  const [images, setImages] = useState([]);
+
   const [errors, setErrors] = useState({});
   const [categoryOpen, setCategoryOpen] = useState(false);
-
   const [showDialog, setShowDialog] = useState(false);
+  const [pendingData, setPendingData] = useState(null);
 
   const MAX_DESC_CHARS = 450;
   const MAX_IMAGES = 5;
 
   const categories = ["Stationary", "Electronics", "Furniture", "Accessories"];
+
+  useEffect(() => {
+    if (!initialValue) return;
+
+    setTitle(initialValue.title || "");
+    setPrice(initialValue.price || "");
+    setDescription(initialValue.description || "");
+    setCategory(initialValue.category || "None");
+
+    if (initialValue.images?.length) {
+      setImages(
+        initialValue.images.map((url) => ({
+          file: null,
+          preview: url,
+        }))
+      );
+    }
+  }, [initialValue]);
 
   /* ---------- IMAGE UPLOAD ---------- */
   const handleImageUpload = (e) => {
@@ -43,23 +62,20 @@ export default function Form({ mode = "create", initialValue = {} }) {
     }
   };
 
-  /* ---------- EDIT HANDLER ---------- */
-  function handleEdit(formData) {
-    setShowDialog(true);
-  }
-
   const confirmDialog = () => {
     setShowDialog(false);
+
+    if (pendingData) {
+      onSubmit(pendingData);
+      setPendingData(null);
+    }
   };
 
   /* ---------- SUBMIT ---------- */
-  function handleSubmit(formData) {
-    const name = formData.get("name");
-    const price = formData.get("price");
-
+  function handleSubmit(e) {
     const newErrors = {};
 
-    if (!name.trim()) newErrors.title = "Product title is required";
+    if (!title.trim()) newErrors.title = "Product title is required";
     if (!price) newErrors.price = "Enter a valid price";
     if (images.length === 0) newErrors.images = "At least 1 image is required";
 
@@ -68,12 +84,22 @@ export default function Form({ mode = "create", initialValue = {} }) {
       return;
     }
 
+    const data = {
+      title,
+      price,
+      description,
+      category,
+      images,
+    };
+
     if (mode === "edit") {
-      handleEdit(formData);
+      setPendingData(data);
+      setShowDialog(true);
       return;
     }
 
-    // create mode logic will go here
+    //create mode
+    onSubmit(data);
   }
 
   return (
@@ -89,13 +115,14 @@ export default function Form({ mode = "create", initialValue = {} }) {
             {/* TITLE */}
             <div className="relative mb-2 flex flex-col gap-1">
               <input
-                id="name"
+                id="title"
                 type="text"
                 placeholder=" "
-                name="name"
-                defaultValue={errors.title ? "" : initialValue.title}
+                name="title"
+                value={title}
                 aria-required
                 onChange={(e) => {
+                  setTitle(e.target.value);
                   if (e.target.value.trim()) {
                     setErrors((prevError) => ({ ...prevError, title: "" }));
                   }
@@ -108,7 +135,7 @@ export default function Form({ mode = "create", initialValue = {} }) {
                                 }`}
               />
               <label
-                htmlFor="name"
+                htmlFor="title"
                 className="absolute left-0 -top-5 transition-all cursor-text duration-200 text-sm peer-focus:-top-5 peer-focus:text-sm peer-placeholder-shown:top-0 peer-placeholder-shown:text-xl text-neutral-500"
               >
                 Product Name(*)
@@ -133,9 +160,10 @@ export default function Form({ mode = "create", initialValue = {} }) {
                   name="price"
                   min={0}
                   max={1000000}
-                  defaultValue={errors.price ? "" : initialValue.price}
+                  value={price}
                   className="peer w-full font-semibold pb-0 pt-0 text-lg outline-none"
                   onChange={(e) => {
+                    setPrice(e.target.value);
                     if (e.target.value.trim()) {
                       setErrors((prevError) => ({ ...prevError, price: "" }));
                     }

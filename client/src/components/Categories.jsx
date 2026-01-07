@@ -1,15 +1,19 @@
-import Category from "./Category"
-
 export default function Categories({ category, setCategory }) {
 
     const categories = ["All", "Accessories", "Stationary", "Electronics"]
-    
+
     const categoryElements = categories.map((name) => {
-        return <Category 
-            category={category} 
-            setCategory={setCategory} 
-            name={name} 
-        />
+        return (
+            <button
+                key={name}
+                onClick={() => setCategory(name.toLowerCase())}
+                className={`border-2 rounded-lg px-3 py-0.5 cursor-pointer
+                ${(category === name.toLowerCase()) ? "selected" : "not-selected"}`
+                }
+            >
+                {name}
+            </button>
+        )
     })
 
     return (
