@@ -39,12 +39,7 @@ io.on('connection', (socket) => {
         socket.join(id)
         console.log(`Socket ${socket.id} joined on room ${id}`)
 
-        socket.on('sendMessage', async (msg) => {
-            try {
-                // post message
-            } catch (error) {
-                console.log(error)
-            }
+        socket.on('sendMessage', (msg) => {
             io.to(id).emit('getMessage', msg)
         })
 

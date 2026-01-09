@@ -12,14 +12,6 @@ export default function ChatRoom() {
 
     const { id } = useParams()
 
-    useEffect(async () => {
-        try {
-            const messages = await API.get(`/api/chat/${id}`)
-        } catch (error) {
-            console.log(error)
-        }
-    }, [id])
-
     useEffect(() => {
         socket.emit('joinRoom', { id })
 
