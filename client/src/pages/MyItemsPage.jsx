@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import MyItemCard from "../components/Product/MyItemCard";
 import Header from "../components/Header";
@@ -36,6 +36,7 @@ export default function MyItems() {
       await API.delete(`/api/listings/${selectedId}`);
 
       alert("Product deleted successfully!");
+     // Navigate("/my-items");
       setProducts((prev) => prev.filter((item) => item._id !== selectedId));
     } catch (err) {
       console.error("Delete error:", err);

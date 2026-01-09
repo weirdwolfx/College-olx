@@ -19,9 +19,7 @@ export default function FormPage() {
     });
 
     try {
-      const response = await API.post("/api/listings/createListing", data, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      const response = await API.post("/api/listings/createListing", formData);
       alert("Product posted successfully!");
       // Optional: Redirect to browse or clear form
     } catch (err) {
