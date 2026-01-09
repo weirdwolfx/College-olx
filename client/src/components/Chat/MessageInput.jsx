@@ -10,6 +10,9 @@ export default function MessageInput({ customClass="" }) {
             sentByMe: true,
         } 
 
+        socket.emit('sendMessage', msgObj)
+        inputRef.current?.focus()
+        
         console.log(msgObj)
     }
 
