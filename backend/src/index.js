@@ -20,7 +20,12 @@ io.on('connection', (socket) => {
         socket.join(id)
         console.log(`Socket ${socket.id} joined on room ${id}`)
 
-        socket.on('sendMessage', (msg) => {
+        socket.on('sendMessage',async (msg) => {
+            try {
+                // post message
+            } catch (error) {
+                console.log(error)
+            }
             io.to(id).emit('getMessage', msg)
         })
 

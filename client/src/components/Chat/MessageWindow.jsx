@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 import socket from "../../socket";
-import msgs from "../../assets/chat";
 
 import MessageBubble from "./MessageBubble"
 

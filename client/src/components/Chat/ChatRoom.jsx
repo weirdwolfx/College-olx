@@ -5,11 +5,20 @@ import ChatHeader from "./ChatHeader"
 import MessageInput from "./MessageInput"
 import MessageWindow from "./MessageWindow"
 
+import API from "../../api"
 import socket from "../../socket"
 
 export default function ChatRoom() {
 
     const { id } = useParams()
+
+    useEffect(async () => {
+        try {
+            const messages = await API.get(`/api/chat/${id}`)
+        } catch (error) {
+            console.log(error)
+        }
+    }, [id])
 
     useEffect(() => {
         socket.emit('joinRoom', { id })
