@@ -2,9 +2,11 @@ import Header from "../components/Header";
 import Form from "../components/Form";
 import BackButton from "../components/BackButton";
 import API from "../api/index";
+import { useNavigate } from "react-router-dom";
 
 export default function FormPage() {
   const handleCreate = async (data) => {
+    const navigate = useNavigate();
     const formData = new FormData();
 
     formData.append("title", data.title);
@@ -23,7 +25,7 @@ export default function FormPage() {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("Product posted successfully!");
-      // Optional: Redirect to browse or clear form
+      navigate("/");
     } catch (err) {
       console.error("Upload error:", err);
       alert(err.response?.data?.message || "Failed to post product");
