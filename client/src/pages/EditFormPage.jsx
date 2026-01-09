@@ -34,9 +34,17 @@ export default function EditForm() {
     formData.append("description", data.description);
     formData.append("category", data.category);
 
-    data.images.forEach((imgObj) => {
-      if (imgObj.file) {
-        formData.append("images", imgObj.file);
+    // unchanged images sent separately
+    const keptImages = data.images
+      .filter((img) => !img.file)
+      .map((img) => img.preview);
+
+    formData.append("existingImages", JSON.stringify(keptImages));
+
+    // sending newly added images here
+    data.images.forEach((img) => {
+      if (img.file) {
+        formData.append("images", img.file);
       }
     });
 
@@ -44,7 +52,6 @@ export default function EditForm() {
       await API.patch(`/api/listings/${id}`, formData);
 
       alert("Product updated successfully!");
-      navigate(`/item/${id}`);
     } catch (err) {
       console.error("Update error:", err);
       alert(err.response?.data?.message || "Failed to update product");

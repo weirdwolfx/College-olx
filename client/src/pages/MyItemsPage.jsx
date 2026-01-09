@@ -41,10 +41,10 @@ export default function MyItems() {
     } catch (err) {
       console.error("Delete error:", err);
       alert(err.response?.data?.message || "Failed to delete product");
+    } finally {
+      setShowDeleteDialog(false);
+      setSelectedId(null);
     }
-
-    setShowDeleteDialog(false);
-    setSelectedId(null);
   };
 
   const handleEdit = (id) => {
