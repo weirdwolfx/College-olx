@@ -1,10 +1,30 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+
+import socket from "../../socket";
+import msgs from "../../assets/chat"
 
 import MessageBubble from "./MessageBubble"
 
-export default function MessageWindow({ messages, customClass = "" }) {
+export default function MessageWindow({ customClass = "" }) {
 
+    const { id } = useParams()
+    const [messages, setMessages] = React.useState([])
     const messagesEndRef = React.useRef(null);
+
+    const updateMessages = (newMsg) => {
+        setMessages(prevMessages => [...prevMessages, newMsg])
+    }
+
+    React.useEffect(() => {
+        setMessages(msgs[id])
+    }, [id])
+
+    React.useEffect(() => {
+        socket.on('getMessage', updateMessages)
+
+        return () => socket.off('getMessage', updateMessages)
+    }, [id])
 
     React.useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -13,7 +33,7 @@ export default function MessageWindow({ messages, customClass = "" }) {
     const messageElements = messages.map((msg) => {
         return (
             <MessageBubble
-                key={msg.id}
+                key={msg._id}
                 msg={msg}
             />
         )
