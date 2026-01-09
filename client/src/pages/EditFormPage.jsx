@@ -1,12 +1,13 @@
 import Header from "../components/Header";
 import Form from "../components/Form";
 import BackButton from "../components/BackButton";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import API from "../api/index";
 
 export default function EditForm() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -53,6 +54,7 @@ export default function EditForm() {
       });
 
       alert("Product updated successfully!");
+      navigate("/my-items");
     } catch (err) {
       console.error("Update error:", err);
       alert(err.response?.data?.message || "Failed to update product");
