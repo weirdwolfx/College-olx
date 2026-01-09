@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SellFormPage from "./pages/SellFormPage";
-import Testlogin from "./pages/Testlogin";
 import BrowsePage from "./pages/BrowsePage";
 import ProductPage from "./pages/ProductPage";
 import ChatRouter from "./components/Chat/ChatRouter";
