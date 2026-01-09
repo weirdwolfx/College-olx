@@ -1,12 +1,13 @@
 import Header from "../components/Header";
 import Form from "../components/Form";
 import BackButton from "../components/BackButton";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import API from "../api/index";
 
 export default function EditForm() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -40,9 +41,7 @@ export default function EditForm() {
     });
 
     try {
-      await API.patch(`/api/listings/${id}`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      await API.patch(`/api/listings/${id}`, formData);
 
       alert("Product updated successfully!");
       navigate(`/item/${id}`);

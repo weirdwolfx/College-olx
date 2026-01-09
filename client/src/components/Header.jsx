@@ -66,6 +66,10 @@ export default function Header() {
           </svg>
         </Link>
 
+<Link to="/my-items" className="border-b-gray-700 border-b-2 md:border-0 text-center">
+          My Items
+        </Link>
+        
 
         {user && (
           <button

@@ -12,4 +12,5 @@ export default defineConfig({
       },
     }),
   ],
+  // No dev proxy — client will call backend via VITE_API_BASE_URL
 })
