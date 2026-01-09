@@ -16,7 +16,6 @@ export default function App() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/sell" element={<SellFormPage />} />
         <Route path="/message/*" element={<ChatPage />} />
-        <Route path="/testlogin" element={<Testlogin />} />
         <Route path="/my-items" element={<MyItemsPage />} />
         <Route path="/my-items/edit/:id" element={<EditFormPage />} />
       </Routes>
